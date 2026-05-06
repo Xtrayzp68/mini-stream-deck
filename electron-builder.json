@@ -1,0 +1,95 @@
+{
+  "appId": "com.ministreamdeck.app",
+  "productName": "Mini Stream Deck",
+  "copyright": "Copyright © 2026",
+  "directories": {
+    "output": "release",
+    "buildResources": "build"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*",
+    "package.json"
+  ],
+  "extraMetadata": {
+    "main": "electron/main.js"
+  },
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      },
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "public/icon.ico",
+    "requestedExecutionLevel": "asInvoker",
+    "fileAssociations": [
+      {
+        "ext": "msd",
+        "name": "Mini Stream Deck Config",
+        "description": "Mini Stream Deck Configuration File",
+        "icon": "public/icon.ico"
+      }
+    ]
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "allowElevation": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Mini Stream Deck",
+    "runAfterFinish": true,
+    "installerHeaderIcon": "public/icon.ico",
+    "installerIcon": "public/icon.ico",
+    "uninstallerIcon": "public/icon.ico",
+    "installerSidebar": "build/installer-sidebar.bmp",
+    "uninstallerSidebar": "build/uninstaller-sidebar.bmp",
+    "license": "LICENSE",
+    "language": "1036",
+    "deleteAppDataOnUninstall": false,
+    "displayLanguageSelector": false
+  },
+  "portable": {
+    "artifactName": "Mini-Stream-Deck-Portable-${version}.exe",
+    "requestExecutionLevel": "user"
+  },
+  "mac": {
+    "target": ["dmg", "zip"],
+    "icon": "public/icon.icns",
+    "category": "public.app-category.utilities",
+    "hardenedRuntime": true,
+    "gatekeeperAssess": false
+  },
+  "dmg": {
+    "contents": [
+      {
+        "x": 130,
+        "y": 220
+      },
+      {
+        "x": 410,
+        "y": 220,
+        "type": "link",
+        "path": "/Applications"
+      }
+    ]
+  },
+  "linux": {
+    "target": ["AppImage", "deb"],
+    "icon": "public/icon.png",
+    "category": "Utility",
+    "maintainer": "Mini Stream Deck Team"
+  },
+  "appImage": {
+    "artifactName": "Mini-Stream-Deck-${version}.${ext}"
+  },
+  "deb": {
+    "artifactName": "mini-stream-deck_${version}_${arch}.${ext}"
+  },
+  "publish": null
+}

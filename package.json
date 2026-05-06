@@ -1,0 +1,106 @@
+{
+  "name": "mini-stream-deck",
+  "version": "1.0.0",
+  "description": "Mini Stream Deck USB - Application Desktop",
+  "main": "electron/main.js",
+  "author": "Mini Stream Deck Team",
+  "license": "MIT",
+  "scripts": {
+    "dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "build": "tsc && vite build",
+    "build:electron": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux",
+    "preview": "vite preview",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "build": {
+    "appId": "com.ministreamdeck.app",
+    "productName": "Mini Stream Deck",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "public/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Mini Stream Deck",
+      "installerIcon": "public/icon.ico",
+      "uninstallerIcon": "public/icon.ico",
+      "installerHeaderIcon": "public/icon.ico"
+    },
+    "portable": {
+      "artifactName": "Mini-Stream-Deck-Portable-${version}.exe"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "icon": "public/icon.icns"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "icon": "public/icon.png"
+    }
+  },
+  "dependencies": {
+    "@electron/remote": "^2.1.2",
+    "clsx": "^2.1.1",
+    "electron-is-dev": "^3.0.1",
+    "electron-log": "^5.4.0",
+    "electron-store": "^10.1.0",
+    "electron-updater": "^6.6.2",
+    "is-online": "^11.0.0",
+    "keytar": "^7.9.0",
+    "lucide-react": "^0.525.0",
+    "node-pty": "^1.0.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-hot-toast": "^2.5.2",
+    "serialport": "^13.0.0",
+    "tailwind-merge": "^3.5.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "4.1.17",
+    "@types/node": "22.19.17",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@vitejs/plugin-react": "5.1.1",
+    "concurrently": "^9.1.2",
+    "electron": "^36.4.0",
+    "electron-builder": "^26.0.12",
+    "electron-devtools-installer": "^4.0.0",
+    "electron-rebuild": "^3.2.9",
+    "tailwindcss": "4.1.17",
+    "typescript": "5.9.3",
+    "vite": "7.3.2",
+    "vite-plugin-singlefile": "2.3.0",
+    "wait-on": "^8.0.3"
+  }
+}
